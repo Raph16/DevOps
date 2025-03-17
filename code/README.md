@@ -1,4 +1,4 @@
-Projektaufgabe :
+# Projektaufgabe :
 
  Das Ziel dieses Projekts ist es, einen prototypischen Ansatz für eine vollständige DevOps
  Infrastruktur zu erarbeiten und zu demonstrieren, der auf die spezifischen Anforderungen
@@ -13,12 +13,12 @@ Projektaufgabe :
      docker compose up account-service service-proxy
 
 ## LAUNCH FRONTEND
-# Ein zweiter Terminal öffnen und den unteren Befehl eingeben, um den Front-end im lauf zu bringen
+   Ein zweiter Terminal öffnen und den unteren Befehl eingeben, um den Front-end im lauf zu bringen
      docker compose up frontend
 
 
 ## VISIT APP
-# Url in Browser eingeben
+   Url in Browser eingeben
 http://localhost:3001
 
 ## Admin Credentials
