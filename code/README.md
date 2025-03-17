@@ -8,17 +8,17 @@
 
 
 ### LAUNCH BACKEND
-# Terminal öffnen und den unteren Befehl eingeben.
+### Terminal öffnen und den unteren Befehl eingeben.
      docker compose up service-config service-registry 
      docker compose up account-service service-proxy
 
 ## LAUNCH FRONTEND
-   Ein zweiter Terminal öffnen und den unteren Befehl eingeben, um den Front-end im lauf zu bringen
+### Ein zweiter Terminal öffnen und den unteren Befehl eingeben, um den Front-end im lauf zu bringen
      docker compose up frontend
 
 
 ## VISIT APP
-   Url in Browser eingeben
+### Url in Browser eingeben
 http://localhost:3001
 
 ## Admin Credentials
