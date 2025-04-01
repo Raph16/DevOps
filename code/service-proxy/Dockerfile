@@ -18,6 +18,11 @@ FROM openjdk:17
 # Définir le répertoire de travail
 WORKDIR /app
 
+ENV SPRING_APPLICATION_NAME="service-proxy"
+ENV SPRING_CLOUD_CONFIG_URI="http://service-config:8080"
+ENV SPRING_CONFIG_IMPORT="configserver:http://service-config:8080"
+
+
 # Copier le JAR construit depuis l'étape de construction
 COPY --from=build /app/target/*.jar app.jar
 

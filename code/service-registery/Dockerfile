@@ -1,28 +1,62 @@
+##
+## Étape 1 : Construction de l'application
+#FROM maven:latest as build
+#
+## Définir le répertoire de travail
+#WORKDIR /app
+#
+## Copier le fichier pom.xml et le répertoire src
+#COPY pom.xml .
+#COPY src ./src
+#
+## Construire l'application
+#RUN mvn clean package -DskipTests
+#
+#FROM openjdk:17
+#
+#
+## Définir le répertoire de travail
+#WORKDIR /app
+#
+## Copier le JAR construit depuis l'étape de construction
+#COPY --from=build /app/target/*.jar app.jar
+#
+## Exposer le port de l'application
+#EXPOSE 8761
+#
+## Commande pour exécuter l'application
+#ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
 # Étape 1 : Construction de l'application
-FROM maven:latest as build
+FROM maven:latest AS build
 
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le fichier pom.xml et le répertoire src
+# Copier les fichiers nécessaires
 COPY pom.xml .
 COPY src ./src
 
-# Construire l'application
+# Construire l'application sans exécuter les tests
 RUN mvn clean package -DskipTests
 
+# Étape 2 : Exécution de l'application
 FROM openjdk:17
-
 
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le JAR construit depuis l'étape de construction
+# Définir les variables d’environnement
+ENV SPRING_APPLICATION_NAME="service-registery"
+ENV SPRING_CLOUD_CONFIG_URI="http://service-config:8080"
+ENV SPRING_CONFIG_IMPORT="configserver:http://service-config:8080"
+
+# Copier le fichier JAR construit depuis l'étape précédente
 COPY --from=build /app/target/*.jar app.jar
 
 # Exposer le port de l'application
 EXPOSE 8761
 
-# Commande pour exécuter l'application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Lancer l'application avec les variables d'environnement
+CMD ["java", "-jar", "app.jar"]

@@ -80,7 +80,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>service-registry</finalName>
+		<finalName>service-registery</finalName>
 	</build>
 
 </project>

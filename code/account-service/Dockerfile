@@ -14,6 +14,10 @@ RUN  pip install -r /requirements.txt
 
 RUN mkdir /app
 WORKDIR /app
+ENV SPRING_APPLICATION_NAME="account-service"
+ENV SPRING_CLOUD_CONFIG_URI="http://service-config:8080"
+ENV SPRING_CONFIG_IMPORT="configserver:http://service-config:8080"
+
 COPY ./api /app
 
 EXPOSE 8083

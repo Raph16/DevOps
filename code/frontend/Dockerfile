@@ -3,6 +3,9 @@ FROM node:18 AS build
 
 # Set the working directory
 WORKDIR /app
+ENV SPRING_APPLICATION_NAME="frontend"
+ENV SPRING_CLOUD_CONFIG_URI="http://service-config:8080"
+ENV SPRING_CONFIG_IMPORT="configserver:http://service-config:8080"
 
 # Copy the package.json and package-lock.json (if it exists)
 COPY package*.json ./
